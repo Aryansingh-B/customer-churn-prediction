@@ -7,11 +7,11 @@
 ![sklearn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](screenshots/image-1.png)
+![alt text](screenshots/image-2.png)
+![alt text](screenshots/image-3.png)
+![alt text](screenshots/image-4.png)
+![alt text](screenshots/image-5.png)
 
 ---
 
