@@ -4,7 +4,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
-Data_Path = r"A:\DataScience_AI\Datasets\Churn.csv"
+Data_Path = "../data/churn.csv"
 
 def load_data(Data_Path):
     df = pd.read_csv(Data_Path)
@@ -38,7 +38,7 @@ def preprocess_data(df):
     ])
     
     preprocessor = ColumnTransformer([
-        ("num", num_pipeline, num_cols)
+        ("num", num_pipeline, num_cols),
         ("cat", cat_pipeline, cat_cols)
     ])
     
@@ -48,3 +48,12 @@ def preprocess_data(df):
     )
     
     return X_train, X_test, y_train, y_test, preprocessor
+
+if __name__ == "__main__":
+    df = load_data(Data_Path)
+
+    X_train, X_test, y_train, y_test, preprocessor = preprocess_data(df)
+
+    print("✅ Data loaded and preprocessed successfully")
+    print("Training shape:", X_train.shape)
+    print("Test shape:", X_test.shape)
