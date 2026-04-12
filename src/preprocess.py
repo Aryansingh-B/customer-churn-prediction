@@ -21,7 +21,7 @@ def preprocess_data(df):
     # Target encoding
     df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
     
-    X = df.drop("Churn", axis=1)
+    X = df.drop(["Churn", "customerID"], axis=1)
     y = df["Churn"]
     
     # Feature types
