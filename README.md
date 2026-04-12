@@ -46,12 +46,17 @@ customer-churn/
 ├── models/
 │   └── model.pkl           # Best trained model (Logistic Regression)
 │
+├── screenshots/            # App screenshots
+│   ├── image-1.png
+│   ├── image-2.png
+│   ├── image-3.png
+│   ├── image-4.png
+│   └── image-5.png
+│
 ├── app.py                  # Streamlit UI for real-time prediction
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-```
-
 ---
 
 ## 📦 Dataset
