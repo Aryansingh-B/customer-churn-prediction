@@ -11,7 +11,6 @@
 ![alt text](screenshots/image-2.png)
 ![alt text](screenshots/image-3.png)
 ![alt text](screenshots/image-4.png)
-![alt text](screenshots/image-5.png)
 
 ---
 
@@ -51,7 +50,6 @@ customer-churn/
 │   ├── image-2.png
 │   ├── image-3.png
 │   ├── image-4.png
-│   └── image-5.png
 │
 ├── app.py                  # Streamlit UI for real-time prediction
 ├── requirements.txt
