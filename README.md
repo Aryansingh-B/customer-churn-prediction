@@ -153,14 +153,6 @@ customer-churn/
 
 ---
 
-## 💡 Business Insights
-- Month-to-month contracts → Higher churn  
-- Higher monthly charges → Increased risk  
-- Longer tenure → Lower churn  
-- Lack of support services → Higher churn  
-
----
-
 ## 🧠 Actionable Recommendations
 Based on prediction:
 - Offer discounts to high-risk customers  
@@ -168,6 +160,30 @@ Based on prediction:
 - Provide loyalty programs for retention  
 
 ---
+
+🔥 Key Highlights
+
+✔ End-to-end ML pipeline
+✔ Feature engineering
+✔ Model explainability
+✔ Interactive dashboard
+✔ Business-focused insights
+
+---
+
+## 💡 Business Insights
+- Month-to-month contracts → Higher churn  
+- Higher monthly charges → Increased risk  
+- Longer tenure → Lower churn  
+- Lack of support services → Higher churn  
+
+---git 
+
+## 🚀 Future Improvements
+
+- Integrate SHAP for model explainability and feature impact analysis  
+- Apply hyperparameter tuning using GridSearchCV for performance optimization  
+- Deploy on cloud platforms like Streamlit Cloud or AWS for public access  
 
 ## ▶️ How to Run
 
