@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from src.predict import predict_churn
 
 st.set_page_config(page_title="Churn Prediction", layout="wide")
@@ -76,23 +77,46 @@ with tab2:
         "TotalCharges": TotalCharges
     }
 
-    if st.button("🚀 Predict Now"):
-        prediction, prob = predict_churn(input_data)
+if st.button("🚀 Predict Now"):
+    prediction, prob = predict_churn(input_data)
 
-        st.markdown("---")
-        st.subheader("📊 Prediction Result")
+    st.markdown("---")
+    st.subheader("📊 Prediction Result")
 
-        col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-        col1.metric("Churn Probability", f"{prob:.2f}")
-        col2.metric("Risk Level", "High" if prediction == 1 else "Low")
+    col1.metric("Churn Probability", f"{prob:.2%}")
+    col2.metric("Risk Level", "High" if prediction == 1 else "Low")
 
-        st.progress(float(prob))
+    st.progress(float(prob))
 
-        if prediction == 1:
-            st.error("⚠️ High Risk Customer")
-        else:
-            st.success("✅ Low Risk Customer")
+    # ✅ Risk Label
+    if prediction == 1:
+        st.error("⚠️ High Risk Customer")
+
+        st.markdown("### 💡 Recommended Actions:")
+        st.write("- Offer discounts or incentives")
+        st.write("- Provide better customer support")
+        st.write("- Engage with personalized offers")
+
+    else:
+        st.success("✅ Low Risk Customer")
+
+        st.markdown("### 💡 Recommended Actions:")
+        st.write("- Maintain customer engagement")
+        st.write("- Provide loyalty rewards")
+        st.write("- Upsell premium services")
+
+    # ✅ Risk Category
+    st.markdown("### 📌 Risk Category")
+
+    if prob > 0.7:
+        st.error("🔴 Very High Risk")
+    elif prob > 0.4:
+        st.warning("🟠 Medium Risk")
+    else:
+        st.success("🟢 Low Risk")
+
 
 # ===================== INSIGHTS =====================
 with tab3:
@@ -106,3 +130,13 @@ with tab3:
     """)
 
     st.warning("⚠️ Businesses should focus on retention strategies for high-risk segments.")
+    
+    st.subheader("📊 Feature Importance")
+
+    try:
+        fi = pd.read_csv("models/feature_importance.csv")
+
+        st.bar_chart(fi.head(10).set_index("Feature"))
+
+    except:
+        st.warning("Feature importance not available")

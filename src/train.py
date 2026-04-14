@@ -76,6 +76,22 @@ best_pipeline = Pipeline([
 
 best_pipeline.fit(X_train, y_train)
 
+# Extract feature names
+feature_names = final_model.named_steps["preprocessor"].get_feature_names_out()
+
+# Get feature importance (for tree models)
+if hasattr(final_model.named_steps["model"], "feature_importances_"):
+    importances = final_model.named_steps["model"].feature_importances_
+
+    feature_df = pd.DataFrame({
+        "Feature": feature_names,
+        "Importance": importances
+    }).sort_values(by="Importance", ascending=False)
+
+    feature_df.to_csv("../models/feature_importance.csv", index=False)
+
+    print("✅ Feature importance saved")
+
 # Save model
 pickle.dump(best_pipeline, open("../models/model.pkl", "wb"))
 

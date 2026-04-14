@@ -42,6 +42,10 @@ def preprocess_data(df):
         ("cat", cat_pipeline, cat_cols)
     ])
     
+    # Feature Engineering
+    df["AvgCharges"] = df["TotalCharges"] / (df["tenure"] + 1)
+    df["IsLongTerm"] = (df["tenure"] > 12).astype(int)
+    
     # Train-Test split
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
