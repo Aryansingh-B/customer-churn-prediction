@@ -16,7 +16,9 @@
 
 ## 🚀 Problem Statement
 
-Customer churn is one of the most critical challenges in telecom and subscription-based businesses. Losing a customer is 5–10x more expensive than retaining one. This project builds a machine learning system to **predict churn before it happens**, enabling businesses to take proactive retention actions.
+Customer churn is a major challenge for telecom and subscription-based businesses.  
+This project aims to predict whether a customer is likely to churn, enabling companies to take proactive retention actions.
+
 
 ---
 
@@ -26,6 +28,13 @@ Customer churn is one of the most critical challenges in telecom and subscriptio
 - Best model achieved **ROC-AUC of 0.83** on the test set
 - Built a **real-time prediction app** using Streamlit — no coding needed to use
 - Complete **end-to-end pipeline**: raw data → EDA → preprocessing → training → deployment
+
+---
+
+## 🎯 Business Objective
+- Reduce customer churn  
+- Improve customer retention strategies  
+- Identify high-risk customers early  
 
 ---
 
@@ -68,36 +77,95 @@ customer-churn/
 
 ## 🔄 Project Pipeline
 
-### 1. Exploratory Data Analysis (`eda.py`)
-- Checked for missing values and class imbalance
-- Found `TotalCharges` stored as object — fixed datatype
-- Analyzed churn rate by contract type, tenure, and monthly charges
+### 1️⃣ Data Collection
+- Dataset sourced from Kaggle
 
-### 2. Data Preprocessing (`preprocess.py`)
-- Handled missing values in `TotalCharges`
-- Label encoded binary columns
-- One-hot encoded multi-category columns
-- Scaled numerical features using `StandardScaler`
+### 2️⃣ Exploratory Data Analysis (EDA)
+- Checked missing values  
+- Fixed datatype issue in `TotalCharges`  
+- Analyzed distributions and correlations  
 
-### 3. Model Training (`train.py`)
-- Trained 3 models and compared performance:
+### 3️⃣ Feature Engineering 🔥
+- Created:
+  - `AvgCharges` = TotalCharges / tenure  
+  - `IsLongTerm` = tenure > 12  
 
-| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
-|---|---|---|---|---|---|
-| Logistic Regression | 0.7889 | 0.6238 | 0.5187 | 0.5664 | **0.8320** ✅ |
-| Random Forest | 0.7711 | 0.5915 | 0.4492 | 0.5106 | 0.8047 |
-| XGBoost | 0.7655 | 0.5687 | 0.4866 | 0.5245 | 0.8101 |
+👉 Improved model understanding and performance
 
-- **Best Model: Logistic Regression** (highest ROC-AUC → 0.8320)
-- Saved trained model as `models/model.pkl`
+---
 
-### 4. Prediction (`predict.py`)
-- Loads saved model pipeline
-- Accepts new customer data and returns churn probability + label
+### 4️⃣ Data Preprocessing
+- Removed irrelevant column (`customerID`)
+- Handled missing values
+- Applied:
+  - OneHotEncoding (categorical features)
+  - StandardScaler (numerical features)
+- Used **ColumnTransformer + Pipeline**
 
-### 5. Streamlit App (`app.py`)
-- Interactive UI — fill in customer details and get instant churn prediction
-- Business-ready: designed for non-technical users
+---
+
+## 🤖 Models Used
+- Logistic Regression  
+- Random Forest  
+- XGBoost  
+
+---
+
+## 📈 Evaluation Metrics
+- Accuracy  
+- Precision  
+- Recall  
+- F1 Score  
+- **ROC-AUC (Primary metric)**  
+
+---
+
+## 🏆 Model Selection
+- Compared multiple models  
+- Selected best model based on ROC-AUC  
+- Achieved ~0.81 ROC-AUC  
+
+---
+
+## 📊 Feature Importance 🔥
+- Extracted feature importance from trained model  
+- Identified key drivers of churn:
+  - Contract type  
+  - Monthly charges  
+  - Tenure  
+  - Internet service  
+
+---
+
+## 🌐 Deployment (Streamlit App)
+
+### 🔥 Features:
+- Interactive UI with tabs:
+  - Dashboard  
+  - Prediction  
+  - Insights  
+- Real-time churn prediction  
+- Probability score visualization  
+- Risk categorization:
+  - 🔴 High Risk  
+  - 🟠 Medium Risk  
+  - 🟢 Low Risk  
+
+---
+
+## 💡 Business Insights
+- Month-to-month contracts → Higher churn  
+- Higher monthly charges → Increased risk  
+- Longer tenure → Lower churn  
+- Lack of support services → Higher churn  
+
+---
+
+## 🧠 Actionable Recommendations
+Based on prediction:
+- Offer discounts to high-risk customers  
+- Improve support & engagement  
+- Provide loyalty programs for retention  
 
 ---
 
@@ -114,24 +182,6 @@ pip install -r requirements.txt
 # 3. Run the app
 streamlit run app.py
 ```
-
----
-
-## 🔥 Key Learnings
-
-- Handling real-world data issues (wrong datatypes, missing values)
-- Building end-to-end sklearn pipelines
-- Model comparison using multiple metrics — not just accuracy
-- Deploying ML models with Streamlit for business use
-
----
-
-## 📌 Future Improvements
-
-- [ ] Hyperparameter tuning with `GridSearchCV`
-- [ ] Feature engineering (e.g., tenure buckets, charge ratios)
-- [ ] Model explainability using **SHAP values**
-- [ ] Deploy on Streamlit Cloud for public access
 
 ---
 
