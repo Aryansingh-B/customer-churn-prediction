@@ -12,7 +12,7 @@ from sklearn.metrics import (
 from sklearn.model_selection import cross_val_score
 from imblearn.over_sampling import SMOTE
 
-from src.data_preprocessing import run_preprocessing_pipeline
+from src.preprocessing import run_preprocessing_pipeline
 
 
 def apply_smote(X_train, y_train):
